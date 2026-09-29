@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>X-Cents: money is worth what a community agrees to trade for</title>
+<meta name="description" content="CurrentSea X-Change (X-Cents): a citizen-led monetary framework that lets communities reassign value to the coins and bills they already hold.">
+<link rel="canonical" href="https://bettertobest.github.io/x-cents/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%99%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="X-Cents: money is worth what a community agrees to trade for">
+<meta property="og:description" content="CurrentSea X-Change (X-Cents): a citizen-led monetary framework that lets communities reassign value to the coins and bills they already hold.">
+<meta property="og:url" content="https://bettertobest.github.io/x-cents/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#E8EFEA;--surface:#F6FAF7;--ink:#10261F;--mute:#465F56;--green:#2F6B55;--gold:#F2B632;--blue:#2B4FBF;--on-blue:#fff;--line:rgba(16,38,31,.18);
+--disp:'Bricolage Grotesque','Trebuchet MS',system-ui,sans-serif;--body:'Source Serif 4',Georgia,'Times New Roman',serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0D1C17;--surface:#14281F;--ink:#E6F0EA;--mute:#9EB6AB;--green:#5FB394;--blue:#8FA8FF;--on-blue:#0D1C17;--line:rgba(230,240,234,.2)}}
+:root[data-theme="dark"]{--bg:#0D1C17;--surface:#14281F;--ink:#E6F0EA;--mute:#9EB6AB;--green:#5FB394;--blue:#8FA8FF;--on-blue:#0D1C17;--line:rgba(230,240,234,.2)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.125rem/1.65 var(--body)}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--disp);line-height:1.08;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,6.5vw,4.6rem);font-weight:800}
+h2{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:800}
+h3{font-size:1.25rem;font-weight:600}
+p{margin:0 0 1em;max-width:64ch}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.25rem}
+section{padding:4.5rem 0;border-top:1px solid var(--line)}
+.lede{font-size:1.25rem;color:var(--mute)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:1.5rem}
+.brand{font:800 1.25rem var(--disp);text-decoration:none;color:var(--ink);padding:.9rem 0;white-space:nowrap}
+nav{display:flex;gap:.25rem;overflow-x:auto;scrollbar-width:none;flex:1}
+nav::-webkit-scrollbar{display:none}
+nav a{font:600 .95rem var(--disp);color:var(--mute);text-decoration:none;padding:.9rem .7rem;white-space:nowrap;border-bottom:3px solid transparent}
+nav a:hover{color:var(--ink)}
+nav a[aria-current="true"]{color:var(--ink);border-bottom-color:var(--gold)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;padding:4rem 0 5rem;border:0}
+@media (max-width:820px){.hero{grid-template-columns:1fr;gap:2rem}}
+.btn{font:600 1rem var(--disp);border:2px solid var(--ink);background:transparent;color:var(--ink);padding:.7rem 1.2rem;border-radius:999px;cursor:pointer}
+.btn.pri{background:var(--ink);color:var(--bg)}
+.btn:hover{background:var(--gold);border-color:var(--gold);color:#10261F}
+.btn[aria-pressed="true"],.btn[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
+/* the laminated bill */
+.bill{position:relative;aspect-ratio:2.3/1;border-radius:14px;background:linear-gradient(135deg,#3f7f68,#245646);color:#EAF6EE;padding:1rem 1.25rem;overflow:hidden;box-shadow:0 0 0 6px rgba(255,255,255,.55),0 18px 40px rgba(0,0,0,.25);border:2px solid rgba(255,255,255,.7)}
+.bill::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.28) 0,rgba(255,255,255,0) 32%,rgba(255,255,255,.12) 55%,rgba(255,255,255,0) 70%);pointer-events:none}
+.bill b{font:800 clamp(3rem,9vw,5rem) var(--disp);line-height:1}
+.bill small{display:block;font:600 .8rem var(--disp);opacity:.85}
+.stickers{position:absolute;right:.9rem;bottom:.8rem;left:45%;display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end}
+.st{width:22px;height:22px;border-radius:50%;background:var(--gold);color:#10261F;font:800 .7rem/22px var(--disp);text-align:center;border:2px solid #fff}
+.st:nth-child(3n){background:#8FA8FF}
+@media (prefers-reduced-motion:no-preference){.st{animation:stamp .25s ease-out}@keyframes stamp{from{transform:scale(2.2);opacity:0}}}
+.readout{margin-top:1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.readout div{border-left:4px solid var(--gold);padding-left:.8rem}
+.readout strong{display:block;font:800 1.9rem var(--disp)}
+.readout span{color:var(--mute);font-size:.95rem}
+/* principles */
+dl.pr{display:grid;grid-template-columns:minmax(0,14rem) 1fr;gap:1.1rem 2rem;margin:2rem 0 0}
+dl.pr dt{font:800 1.15rem var(--disp)}
+dl.pr dd{margin:0;color:var(--mute)}
+@media (max-width:640px){dl.pr{grid-template-columns:1fr;gap:.2rem}dl.pr dd{margin-bottom:1rem}}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+@media (max-width:820px){.split{grid-template-columns:1fr;gap:2rem}}
+ol.steps{padding-left:0;list-style:none;counter-reset:s;margin:0}
+ol.steps li{counter-increment:s;padding-left:3rem;position:relative;margin-bottom:1.1rem}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:-.1rem;width:2.1rem;height:2.1rem;border-radius:50%;background:var(--gold);color:#10261F;font:800 1rem/2.1rem var(--disp);text-align:center}
+table{border-collapse:collapse;width:100%;margin-top:1rem}
+th,td{text-align:left;padding:.6rem .5rem;border-bottom:1px solid var(--line)}
+th{font:600 .95rem var(--disp);color:var(--mute)}
+td:last-child{font:800 1.2rem var(--disp)}
+.tablewrap{overflow-x:auto}
+/* coins */
+.coins{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0}
+.coin{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;font:800 1.15rem var(--disp);color:#10261F;background:radial-gradient(circle at 35% 30%,#f6f6f2,#b9c0bd);border:3px solid rgba(0,0,0,.18)}
+.coin.p{background:radial-gradient(circle at 35% 30%,#e9a273,#a5582b)}
+.coin.on{background:radial-gradient(circle at 35% 30%,#ffe08a,var(--gold));border-color:#fff;box-shadow:0 0 0 3px var(--gold)}
+@media (prefers-reduced-motion:no-preference){.coin{transition:background .3s,box-shadow .3s}}
+/* wheel */
+.wheelbox{position:relative;width:min(280px,80vw);aspect-ratio:1;margin:1rem 0}
+.wheel{position:relative;width:100%;height:100%;border-radius:50%;border:4px solid var(--ink)}
+.lb{position:absolute;inset:0;pointer-events:none}
+.lb span{display:block;text-align:center;padding-top:8%;font:800 1.15rem var(--disp);color:var(--on-blue)}
+.lb span.w0{color:#10261F}
+.lb small{display:block;font-size:.72rem;line-height:1.1}
+.out.win{background:var(--gold);color:#10261F;padding:.6rem .9rem;border-radius:10px}
+.btn:disabled{opacity:.6;cursor:default}
+blockquote.paper{max-width:64ch;font-size:1.15rem;line-height:1.65;margin:1.75rem 0}
+details.meta{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:0 1.5rem}
+details.meta summary{font:600 1.1rem var(--disp);padding:1.1rem 0;cursor:pointer}
+details.meta[open] summary{border-bottom:1px solid var(--line)}
+details.meta dl.pr{margin:1.5rem 0}
+details.meta dd p{margin:0 0 .9rem;max-width:none}
+details.meta code{font:.85rem/1.5 ui-monospace,Menlo,Consolas,monospace;overflow-wrap:anywhere}
+@media (prefers-reduced-motion:no-preference){.wheel{transition:transform 3.2s cubic-bezier(.15,.7,.1,1)}}
+.ptr{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border:12px solid transparent;border-top:22px solid var(--ink);border-bottom:0}
+.out{min-height:3.2em;font-weight:600}
+.tabs{display:flex;gap:.6rem;flex-wrap:wrap;margin:1.25rem 0}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.5rem}
+ul.plain{padding-left:1.1rem;max-width:64ch}
+ul.plain li{margin-bottom:.6rem}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem 2rem;margin-top:2rem}
+.facts strong{display:block;font:800 2.3rem/1 var(--disp);margin-bottom:.35rem}
+.facts span{color:var(--mute);font-size:1rem}
+.note{border-left:4px solid var(--blue);padding:.2rem 0 .2rem 1rem;color:var(--mute);max-width:64ch}
+blockquote{margin:1.5rem 0;padding:0 0 0 1.25rem;border-left:4px solid var(--gold);font-size:1.3rem;max-width:40ch}
+blockquote cite{display:block;font-size:.95rem;color:var(--mute);margin-top:.4rem;font-style:normal}
+footer{padding:3rem 0 4rem;border-top:1px solid var(--line);color:var(--mute);font-size:.95rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top">X-Cents</a>
+    <nav aria-label="Sections">
+      <a href="#idea">The idea</a><a href="#wrap">Wrap your bills</a><a href="#power">Power of 1</a><a href="#wheel">Saturday wheel</a><a href="#why">Why now</a><a href="#rollout">Rollout</a><a href="#portal">The Portal</a><a href="#research">Research</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <h1>A bill is worth what your neighbors will trade for it.</h1>
+      <p class="lede">CurrentSea X-Change, or X-Cents, is a way for a community to reassign value to the coins and paper money it already holds. No new mint, no permission slip, just an agreement and a few stickers.</p>
+      <p>Try it on the right: seal a $20 bill in plastic, then spend it around town.</p>
+    </div>
+    <div>
+      <div class="bill" role="img" aria-label="A laminated twenty dollar bill collecting trade stickers">
+        <small>Sealed by a local co-op</small><b>$20</b>
+        <div class="stickers" id="stickers"></div>
+      </div>
+      <div class="readout" aria-live="polite">
+        <div><strong id="n">0</strong><span>local trades stamped</span></div>
+        <div><strong id="val">$20</strong><span>value at the sealing agent</span></div>
+      </div>
+      <div class="row" style="margin-top:1.25rem">
+        <button class="btn pri" id="trade">Spend it locally</button>
+        <button class="btn" id="reset">Start over</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="idea"><div class="wrap">
+  <h2>Money already runs on agreement.</h2>
+  <p>From Yap Island's stone discs to modern fiat, money works because people accept it. X-Cents starts from that fact and draws a practical conclusion: if acceptance is what gives money its worth, a community can decide what its own coins and bills are worth to each other, especially where official values have left people short of what they need.</p>
+  <blockquote>Concerning price, any <em>thing</em> is worth only what others are willing to trade for it, including time.<cite>Ting Tsu Yu, quoted in the X-Cents paper</cite></blockquote>
+  <p>The framework rests on five principles.</p>
+  <dl class="pr">
+    <dt>Acceptance primacy</dt><dd>Value comes from willingness to accept, not from official designation.</dd>
+    <dt>Resource utilization</dt><dd>Existing coins and bills are the infrastructure. Nothing new has to be produced.</dd>
+    <dt>Community sovereignty</dt><dd>Local collectives decide value systems within their own jurisdictions.</dd>
+    <dt>Gradual transition</dt><dd>A parallel system can run beside official money and, over time, replace what isn't working.</dd>
+    <dt>Scarcity transformation</dt><dd>Manufactured scarcity becomes shared abundance through community-controlled value assignment.</dd>
+  </dl>
+</div></section>
+
+<section id="wrap"><div class="wrap split">
+  <div>
+    <h2>Wrap your bills.</h2>
+    <p>The first mechanism turns an ordinary bill into a community instrument. Its value grows with each local trade, on terms the community writes into its own agreement, so keeping money in circulation close to home pays. Anyone outside the circle is free to accept it too, on whatever terms they choose.</p>
+    <ol class="steps">
+      <li><strong>Wrap it.</strong> A bill is sealed in clear plastic or lamination.</li>
+      <li><strong>Seal it.</strong> A trusted local logo or sticker is applied by an employer or exchange agent.</li>
+      <li><strong>Count it.</strong> Each local transaction adds a sticker. Traded back to the sealing agent, the bill is worth one extra unit per use.</li>
+    </ol>
+    <p>Bills are meant to change hands 10 to 100 times locally before being unwrapped and returned or traded outside the collective.</p>
+  </div>
+  <div class="panel">
+    <h3>A $20 bill, $1 per local trade</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Local trades</th><th>Value at the sealing agent</th></tr></thead>
+      <tbody><tr><td>0</td><td>$20</td></tr><tr><td>10</td><td>$30</td></tr><tr><td>50</td><td>$70</td></tr><tr><td>100</td><td>$120</td></tr></tbody>
+    </table></div>
+    <p style="margin:1rem 0 0;color:var(--mute);font-size:1rem">Outside the community it is a $20 bill unless someone chooses to trade more for it. The premium is whatever the local terms, and any willing outsider, agree it is.</p>
+  </div>
+</div></section>
+
+<section id="power"><div class="wrap">
+  <h2>The Power of 1.</h2>
+  <p>The second mechanism equalizes coins. During designated community hours, every coin counts as $1 for essentials such as food and housing. The paper's example: weekdays, outside business hours. If every penny buys a dollar's worth of what people need to live, hunger and housing-first problems are addressed directly, and people gain say over how they spend their time instead of trading it just to survive.</p>
+  <div class="coins" aria-hidden="true" id="coins">
+    <div class="coin p" data-v="1¢">1¢</div><div class="coin" data-v="5¢">5¢</div><div class="coin" data-v="10¢">10¢</div><div class="coin" data-v="25¢">25¢</div>
+  </div>
+  <div class="row"><button class="btn" id="hours" aria-pressed="false">Switch on community hours</button><span id="hourstxt" aria-live="polite" style="color:var(--mute)">Official face values.</span></div>
+</div></section>
+
+<section id="wheel"><div class="wrap split">
+  <div>
+    <h2>The Saturday wheel.</h2>
+    <p>Value redistribution can be daily and playful. Younger participants trade small coins for larger notes each day, and once a week a wheel matches birth years to coin years for a bigger prize. Choose an age group and spin.</p>
+    <div class="tabs" role="group" aria-label="Age group">
+      <button class="btn" data-g="kids" aria-pressed="true">Ages 5 to 12</button>
+      <button class="btn" data-g="teens" aria-pressed="false">Teenagers</button>
+      <button class="btn" data-g="adults" aria-pressed="false">Adults</button>
+    </div>
+    <p id="rule"></p>
+  </div>
+  <div>
+    <div class="wheelbox" id="wbox"><div class="ptr"></div><div class="wheel" id="wheelEl" role="img" aria-label="Prize wheel"></div></div>
+    <button class="btn pri" id="spin">Spin the wheel</button>
+    <p id="odds" style="color:var(--mute);font-size:1rem;margin:1rem 0 0"></p>
+    <p class="out" id="out" aria-live="polite" style="margin-top:.75rem"></p>
+    <p id="tally" style="color:var(--mute);font-size:.95rem;margin:0"></p>
+  </div>
+</div></section>
+
+<section id="why"><div class="wrap">
+  <h2>Why a community might reach for it.</h2>
+  <p>The paper argues that conventional monetary policy has left many people exposed: Japan's deflationary trap, Turkey's hyperinflation, Cuba's dual currencies, Iran's sanctions-driven instability. In the United States it points to housing: home prices ran about three times median household income through the 1990s, and Harvard’s Joint Center for Housing Studies puts the national multiple at about five today, with the priciest metros at eight or more.</p>
+  <div class="facts">
+    <div><strong>35.2%</strong><span>of householders under 35 owned a home in Q2 2026, against 78.6% of those 65 and over</span></div>
+    <div><strong>$1.86T</strong><span>in student debt in 2026, with the average federal borrower owing about $39,500</span></div>
+    <div><strong>22.7M</strong><span>renter households were cost-burdened in 2024, a record, spending over 30% of income on housing</span></div>
+    <div><strong>32.5%</strong><span>of household wealth held by the top 1% in Q2 2026, up from about 23% in 1989</span></div>
+  </div>
+  <p class="note" style="margin-top:2rem">Figures checked in September 2026 against the U.S. Census Bureau Housing Vacancy Survey, the Federal Reserve (G.19 and Distributional Financial Accounts), Federal Student Aid, and Harvard JCHS. Some differ from the original paper, which used earlier data.</p>
+</div></section>
+
+<section id="rollout"><div class="wrap split">
+  <div>
+    <h2>How a town could begin.</h2>
+    <ol class="steps">
+      <li><strong>Organize and assess.</strong> Community assemblies name priority needs and where the current system fails. Local businesses volunteer for lamination and sticker roles. The group picks its first value reassignments.</li>
+      <li><strong>Build acceptance.</strong> Merchants agree to honor X-Cents values for set goods and services, essential providers join in, and a simple system tracks stickers on wrapped bills.</li>
+    </ol>
+  </div>
+  <div>
+    <h3>What it has going for it</h3>
+    <ul class="plain">
+      <li><strong>Immediate.</strong> It uses currency that already exists.</li>
+      <li><strong>Low tech.</strong> Paper, coins, lamination and stickers are enough.</li>
+      <li><strong>Resilient.</strong> It builds on existing legal tender rather than replacing it.</li>
+      <li><strong>Crisis-ready.</strong> It can be stood up quickly in an emergency.</li>
+    </ul>
+    <p class="note">X-Cents is a research proposal. Before piloting, check local tax treatment and the rules on handling and modifying currency where you live. This page is not legal or financial advice.</p>
+  </div>
+</div></section>
+
+<section id="portal"><div class="wrap">
+  <h2>Who keeps the books?</h2>
+  <p>Stickers only mean something if people trust the count. The Citizens Internet Portal (CIP), a companion framework for distributed, tamper-resistant democratic infrastructure, is a natural steward. Choose who runs it.</p>
+  <div class="tabs" role="tablist" aria-label="Portal operator">
+    <button class="btn" role="tab" id="t-gov" aria-selected="true" aria-controls="p-gov" data-p="gov">Government-operated</button>
+    <button class="btn" role="tab" id="t-com" aria-selected="false" aria-controls="p-gov" data-p="com">Community-led, open source</button>
+  </div>
+  <div class="panel" id="p-gov" role="tabpanel" aria-labelledby="t-gov">
+    <p id="ptxt" style="margin:0"></p>
+  </div>
+  <h3 style="margin-top:2.5rem">What the Portal contributes either way</h3>
+  <ul class="plain">
+    <li><strong>A verified circulation ledger.</strong> Sticker counts and seal agents are recorded with cryptographic verification, so no single party can quietly rewrite them.</li>
+    <li><strong>Democratic value-setting.</strong> Liquid democracy lets residents vote directly or delegate on rules such as which goods count as essentials and when community hours run.</li>
+    <li><strong>Shared budgets by quadratic vote.</strong> Weekly prize pools and similar community funds can be allocated by quadratic voting, which lets people express how strongly they care.</li>
+    <li><strong>Distributed architecture.</strong> Power is spread across many nodes, so capture of one operator does not capture the system.</li>
+  </ul>
+  <p class="note">These are proposed integrations drawing on the CIP paper's architecture, cryptographic verification and voting designs. Each still needs to be specified and piloted.</p>
+</div></section>
+
+<section id="research"><div class="wrap">
+  <h2>Read the research.</h2>
+  <p>X-Cents was developed by Duke Johnson, building on Ting Tsu Yu's original CurrentSea X-Change text, and analyzed in a paper co-authored with Claude (Anthropic). It is a stepping stone toward fuller systems such as Creative Currency Octaves, Universal Basic Income and Public Trust Foundations.</p>
+  <blockquote class="paper">The X-Cents framework can be understood as a comprehensive &ldquo;currency assurance&rdquo; system that guarantees community purchasing power and economic stability through democratic mechanisms. Unlike traditional insurance that protects against loss, currency assurance proactively ensures that money serves community welfare through value reassignment, circulation tracking, and equitable distribution systems. X-Cents could provide communities with immediate tools for economic self-determination when conventional institutions perpetuate unfair austerity for some and opulence for others.<cite>From the CurrentSea X-Change paper</cite></blockquote>
+  <div class="row">
+    <a class="btn pri" style="text-decoration:none" href="https://www.academia.edu/144441020/CurrentSea_X_Change_A_Framework_for_Citizen_Led_Monetary_Reset_Using_Existing_Currency_Infrastructure">X-Cents paper</a>
+    <a class="btn" style="text-decoration:none" href="https://bettertobest.github.io/research-hub/">Better To Best Research Hub</a>
+  </div>
+</div></section>
+
+<div class="wrap" style="padding-bottom:3rem">
+<details class="meta">
+  <summary>Paper details: keywords, classification and more</summary>
+  <dl class="pr">
+    <dt>Authors</dt><dd>Duke Johnson (independent researcher) and Claude (Anthropic)</dd>
+    <dt>Keywords</dt><dd>Monetary Reset, Community Currency, Post-Conflict Economics, Citizen Sovereignty, Alternative Monetary Systems, Economic Democracy, Laminated Currency, Loyalty Programs</dd>
+    <dt>JEL classification</dt><dd>E42, E52, P16, O17, Z13</dd>
+    <dt>Mathematical framework</dt><dd>
+      <p><strong>Community value</strong><br><code>V_c(i) = f(community_needs, local_priorities, democratic_process, scarcity_correction)</code></p>
+      <p><strong>Scarcity transformation ratio</strong><br><code>STR = (community_assigned_value / official_scarcity_value) &times; acceptance_rate</code></p>
+      <p><strong>Acceptance rate</strong><br><code>A(t) = &alpha; &times; (community_benefit / transition_cost) &times; adoption_rate(t) &times; fairness_perception(t)</code></p>
+      <p><strong>Laminated bill value</strong><br><code>V_enhanced = V_original + (n_transactions &times; enhancement_rate &times; community_multiplier)</code></p>
+      <p><strong>Community circulation benefit</strong><br><code>CB = &Sigma;(local_transactions &times; local_multiplier) &minus; external_extraction_rate</code></p>
+    </dd>
+    <dt>Acknowledgments</dt><dd>The authors thank community organizers, monetary reform advocates and citizens struggling with inadequate economic systems, and acknowledge Ting Tsu Yu&rsquo;s foundational CurrentSea X-Change concepts and feedback from early X-Cents pilot discussions.</dd>
+    <dt>Conflict of interest</dt><dd>The authors declare no conflicts of interest related to this research.</dd>
+    <dt>License</dt><dd>Creative Commons Attribution 4.0 International (CC BY 4.0)</dd>
+  </dl>
+</details>
+</div>
+</main>
+
+<footer><div class="wrap">
+  <p>Johnson, D., &amp; Claude (Anthropic). (2025). CurrentSea X-Change: A framework for citizen-led monetary reset using existing currency infrastructure. Better to Best Research Hub. Licensed CC BY 4.0, so please share and adapt with attribution.</p>
+</div></footer>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+/* nav highlight */
+var links=[].slice.call(document.querySelectorAll('nav a'));
+var secs=links.map(function(a){return $(a.getAttribute('href').slice(1))});
+var navEl=document.querySelector('nav'),last=-2;
+function spy(){var y=window.scrollY+120,cur=-1;secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i});if(cur===last)return;last=cur;links.forEach(function(a,i){if(i===cur)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+if(cur>-1){var nr=navEl.getBoundingClientRect(),ar=links[cur].getBoundingClientRect();if(ar.left<nr.left)navEl.scrollLeft-=nr.left-ar.left+12;else if(ar.right>nr.right)navEl.scrollLeft+=ar.right-nr.right+12}}
+var tick=false;window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(function(){spy();tick=false})}},{passive:true});spy();
+/* bill */
+var n=0;
+function bill(){$('n').textContent=n;$('val').textContent='$'+(20+n);var s=$('stickers');s.innerHTML='';for(var i=0;i<Math.min(n,28);i++){var d=document.createElement('span');d.className='st';d.textContent='✓';s.appendChild(d)}if(n>28){var m=document.createElement('span');m.style.cssText='font:800 .8rem var(--disp);align-self:center';m.textContent='+'+(n-28);s.appendChild(m)}}
+$('trade').onclick=function(){if(n<100){n++;bill()}};
+$('reset').onclick=function(){n=0;bill()};
+/* coins */
+var on=false;
+$('hours').onclick=function(){on=!on;this.setAttribute('aria-pressed',on);this.textContent=on?'Switch off community hours':'Switch on community hours';$('hourstxt').textContent=on?'Every coin counts as $1 for essentials.':'Official face values.';[].forEach.call($('coins').children,function(c){c.classList.toggle('on',on);c.textContent=on?'$1':c.dataset.v})};
+/* wheel */
+var G={kids:{n:8,short:'$20',rule:'Trade one penny for a new dollar every day. On Saturday, a birth-year match (1 in 8) wins $20 for the matching-year coin.',prize:'$20 for the matching-year penny'},
+teens:{n:7,short:'$50',rule:'Trade nickels for new $5 bills daily. On the weekly spin, a birth-year match (1 in 7) wins $50 for the matching-year nickel.',prize:'$50 for the matching-year nickel'},
+adults:{n:0,rule:'Trade dimes for new $10 bills daily. Amounts vary with community requirements, civic responsibility or accumulated community work hours, so there is no fixed wheel. Your community sets the terms.'}};
+var g='kids',rot=0,spins=0,hits=0;
+function draw(){var c=G[g];$('rule').textContent=c.rule;var o=$('out');o.textContent='';o.classList.remove('win');spins=0;hits=0;$('tally').textContent='';var box=$('wbox'),w=$('wheelEl'),sp=$('spin');sp.disabled=false;
+if(!c.n){box.style.display='none';sp.style.display='none';$('odds').textContent='';return}
+box.style.display='';sp.style.display='';$('odds').textContent='The wheel has '+c.n+' slots and only slot '+c.n+' wins, so each spin is a 1 in '+c.n+' chance. Most spins will not match, which is how a lottery works.';
+var seg=360/c.n,st=[];for(var i=0;i<c.n;i++)st.push(i===c.n-1?'var(--gold)':(i%2?'var(--green)':'var(--blue)'));
+w.innerHTML='';for(var j=0;j<c.n;j++){var lb=document.createElement('div');lb.className='lb';lb.setAttribute('aria-hidden','true');lb.style.transform='rotate('+((j+.5)*seg)+'deg)';var lab=document.createElement('span');lab.textContent=j+1;if(j===c.n-1){lab.className='w0';var sm=document.createElement('small');sm.textContent=c.short;lab.appendChild(sm)}lb.appendChild(lab);w.appendChild(lb)}
+w.style.background='conic-gradient('+st.map(function(col,i){return col+' '+(i*seg)+'deg '+((i+1)*seg)+'deg'}).join(',')+')';w.style.transition='none';rot=0;w.style.transform='rotate(0deg)';void w.offsetWidth;w.style.transition=''}
+[].forEach.call(document.querySelectorAll('[data-g]'),function(b){b.onclick=function(){g=b.dataset.g;[].forEach.call(document.querySelectorAll('[data-g]'),function(x){x.setAttribute('aria-pressed',x===b)});draw()}});
+$('spin').onclick=function(){var c=G[g],gg=g,seg=360/c.n,win=Math.random()<1/c.n,k=win?c.n-1:Math.floor(Math.random()*(c.n-1));
+rot=(Math.floor(rot/360)+5)*360+(360-(k+.5)*seg);$('wheelEl').style.transform='rotate('+rot+'deg)';
+var btn=this,o=$('out');btn.disabled=true;o.classList.remove('win');o.textContent='Spinning';
+var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+setTimeout(function(){if(gg!==g)return;spins++;if(win)hits++;
+o.textContent='Landed on slot '+(k+1)+' of '+c.n+'. '+(win?'Birth-year match! Collect '+c.prize+'.':'No match this week, since only slot '+c.n+' wins. Tomorrow\u2019s daily trade is still yours.');
+if(win)o.classList.add('win');
+$('tally').textContent=spins+(spins===1?' spin, ':' spins, ')+hits+(hits===1?' match':' matches')+' so far.';btn.disabled=false},reduce?0:3200)};
+draw();
+/* portal tabs */
+var P={gov:'A municipality, open collective or even a private group runs its own Portal instance. Assemblies set value rules, the government or operators register seal agents, and every stamp lands on a public ledger that residents or members can audit. It can add legitimacy and reach, and the Portal\u2019s distributed design still keeps any one official from altering the record.',
+com:'A volunteer collective runs the Portal as open-source software. The code is public and forkable, seal agents are admitted by community vote, and any neighborhood can spin up its own node and interconnect with others. It works with or without official sponsorship.'};
+function tab(k){$('ptxt').textContent=P[k];[].forEach.call(document.querySelectorAll('[data-p]'),function(b){b.setAttribute('aria-selected',b.dataset.p===k)});$('p-gov').setAttribute('aria-labelledby','t-'+k)}
+[].forEach.call(document.querySelectorAll('[data-p]'),function(b){b.onclick=function(){tab(b.dataset.p)}});tab('gov');
+})();
+</script>
+</body>
+</html>
