@@ -6,7 +6,8 @@ A standalone site presenting **CurrentSea X-Change (X-Cents)**, a citizen-led mo
 
 ## What's here
 
-- `index.html`: the whole site in one self-contained file (styles and scripts included; only Google Fonts load externally).
+- `index.html`: the whole site in one file (styles and scripts included).
+- `assets/fonts/`: the two fonts, self-hosted under the SIL Open Font License, so visiting the site sends nothing to Google or any other font service.
 
 ## Linking to a section
 
