@@ -7,6 +7,7 @@ A standalone site presenting **CurrentSea X-Change (X-Cents)**, a citizen-led mo
 ## What's here
 
 - `index.html`: the whole site in one file (styles and scripts included).
+- `assets/og-image.png`: the 1200 by 630 social card shown when the site is shared.
 - `assets/fonts/`: the two fonts, self-hosted under the SIL Open Font License, so visiting the site sends nothing to Google or any other font service.
 
 ## Linking to a section
@@ -17,6 +18,7 @@ Other pages, articles and papers can link straight to any part of the site:
 - `#wrap` (Wrap Your Bills)
 - `#power` (The Power of 1)
 - `#wheel` (the Saturday wheel)
+- `#debt` (clearing debts without cash)
 - `#why` (why now)
 - `#rollout` (how a town could begin)
 - `#portal` (the Citizens Internet Portal)
