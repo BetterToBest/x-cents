@@ -11,7 +11,14 @@
 <meta property="og:title" content="X-Cents: money is worth what a community agrees to trade for">
 <meta property="og:description" content="CurrentSea X-Change (X-Cents): a citizen-led monetary framework that lets communities reassign value to the coins and bills they already hold.">
 <meta property="og:url" content="https://bettertobest.github.io/x-cents/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://bettertobest.github.io/x-cents/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A laminated twenty dollar bill collecting trade stickers beside the headline: A bill is worth what your neighbors will trade for it.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="X-Cents: money is worth what a community agrees to trade for">
+<meta name="twitter:description" content="CurrentSea X-Change (X-Cents): a citizen-led monetary framework that lets communities reassign value to the coins and bills they already hold.">
+<meta name="twitter:image" content="https://bettertobest.github.io/x-cents/assets/og-image.png">
 <style>
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:swap;src:url(assets/fonts/bricolage-grotesque.woff2) format('woff2')}
 @font-face{font-family:'Source Serif 4';font-style:normal;font-weight:200 900;font-display:swap;src:url(assets/fonts/source-serif-4-normal.woff2) format('woff2')}
@@ -26,7 +33,8 @@ html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 1.125rem/1.65 var(--body)}
 a{color:var(--blue)}
-:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:4px}
+nav a:focus-visible{outline-offset:-3px}
 h1,h2,h3{font-family:var(--disp);line-height:1.08;margin:0 0 .5em;letter-spacing:-.02em}
 h1{font-size:clamp(2.4rem,6.5vw,4.6rem);font-weight:800}
 h2{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:800}
@@ -48,13 +56,13 @@ nav a[aria-current="true"]{color:var(--ink);border-bottom-color:var(--gold)}
 .btn{font:600 1rem var(--disp);border:2px solid var(--ink);background:transparent;color:var(--ink);padding:.7rem 1.2rem;border-radius:999px;cursor:pointer}
 .btn.pri{background:var(--ink);color:var(--bg)}
 .btn:hover{background:var(--gold);border-color:var(--gold);color:#10261F}
-.btn[aria-pressed="true"],.btn[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .row{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
 /* the laminated bill */
-.bill{position:relative;aspect-ratio:2.3/1;border-radius:14px;background:linear-gradient(135deg,#3f7f68,#245646);color:#EAF6EE;padding:1rem 1.25rem;overflow:hidden;box-shadow:0 0 0 6px rgba(255,255,255,.55),0 18px 40px rgba(0,0,0,.25);border:2px solid rgba(255,255,255,.7)}
-.bill::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.28) 0,rgba(255,255,255,0) 32%,rgba(255,255,255,.12) 55%,rgba(255,255,255,0) 70%);pointer-events:none}
+.bill{position:relative;aspect-ratio:2.3/1;border-radius:14px;background:linear-gradient(135deg,#2f6b55,#1f4d3d);color:#F2FAF5;padding:1rem 1.25rem;overflow:hidden;box-shadow:0 0 0 6px rgba(255,255,255,.55),0 18px 40px rgba(0,0,0,.25);border:2px solid rgba(255,255,255,.7)}
+.bill::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.16) 0,rgba(255,255,255,0) 32%,rgba(255,255,255,.1) 55%,rgba(255,255,255,0) 70%);pointer-events:none}
 .bill b{font:800 clamp(3rem,9vw,5rem) var(--disp);line-height:1}
-.bill small{display:block;font:600 .8rem var(--disp);opacity:.85}
+.bill small{display:block;font:600 .8rem var(--disp)}
 .stickers{position:absolute;right:.9rem;bottom:.8rem;left:45%;display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end}
 .st{width:22px;height:22px;border-radius:50%;background:var(--gold);color:#10261F;font:800 .7rem/22px var(--disp);text-align:center;border:2px solid #fff}
 .st:nth-child(3n){background:#8FA8FF}
@@ -78,6 +86,8 @@ th,td{text-align:left;padding:.6rem .5rem;border-bottom:1px solid var(--line)}
 th{font:600 .95rem var(--disp);color:var(--mute)}
 td:last-child{font:800 1.2rem var(--disp)}
 .tablewrap{overflow-x:auto}
+#dbt td{font:800 1.2rem var(--disp)}
+#dbt tbody th{font:600 1rem var(--disp);color:var(--ink)}
 /* coins */
 .coins{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0}
 .coin{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;font:800 1.15rem var(--disp);color:#10261F;background:radial-gradient(circle at 35% 30%,#f6f6f2,#b9c0bd);border:3px solid rgba(0,0,0,.18)}
@@ -92,7 +102,7 @@ td:last-child{font:800 1.2rem var(--disp)}
 .lb span.w0{color:#10261F}
 .lb small{display:block;font-size:.72rem;line-height:1.1}
 .out.win{background:var(--gold);color:#10261F;padding:.6rem .9rem;border-radius:10px}
-.btn:disabled{opacity:.6;cursor:default}
+.btn:disabled,.btn[aria-disabled="true"]{opacity:.6;cursor:default}
 blockquote.paper{max-width:64ch;font-size:1.15rem;line-height:1.65;margin:1.75rem 0}
 details.meta{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:0 1.5rem}
 details.meta summary{font:600 1.1rem var(--disp);padding:1.1rem 0;cursor:pointer}
@@ -121,7 +131,7 @@ footer{padding:3rem 0 4rem;border-top:1px solid var(--line);color:var(--mute);fo
   <div class="wrap">
     <a class="brand" href="#top">X-Cents</a>
     <nav aria-label="Sections">
-      <a href="#idea">The idea</a><a href="#wrap">Wrap your bills</a><a href="#power">Power of 1</a><a href="#wheel">Saturday wheel</a><a href="#why">Why now</a><a href="#rollout">Rollout</a><a href="#portal">The Portal</a><a href="#research">Research</a>
+      <a href="#idea">The idea</a><a href="#wrap">Wrap your bills</a><a href="#power">Power of 1</a><a href="#wheel">Saturday wheel</a><a href="#debt">Clearing debt</a><a href="#why">Why now</a><a href="#rollout">Rollout</a><a href="#portal">The Portal</a><a href="#research">Research</a>
     </nav>
   </div>
 </header>
@@ -192,7 +202,7 @@ footer{padding:3rem 0 4rem;border-top:1px solid var(--line);color:var(--mute);fo
   <div class="coins" aria-hidden="true" id="coins">
     <div class="coin p" data-v="1¢">1¢</div><div class="coin" data-v="5¢">5¢</div><div class="coin" data-v="10¢">10¢</div><div class="coin" data-v="25¢">25¢</div>
   </div>
-  <div class="row"><button class="btn" id="hours" aria-pressed="false">Switch on community hours</button><span id="hourstxt" aria-live="polite" style="color:var(--mute)">Official face values.</span></div>
+  <div class="row"><button class="btn" id="hours" aria-pressed="false">Community hours</button><span id="hourstxt" aria-live="polite" style="color:var(--mute)">Official face values.</span></div>
 </div></section>
 
 <section id="wheel"><div class="wrap split">
@@ -213,6 +223,45 @@ footer{padding:3rem 0 4rem;border-top:1px solid var(--line);color:var(--mute);fo
     <p class="out" id="out" aria-live="polite" style="margin-top:.75rem"></p>
     <p id="tally" style="color:var(--mute);font-size:.95rem;margin:0"></p>
   </div>
+</div></section>
+
+<section id="debt"><div class="wrap">
+  <div class="split">
+    <div>
+      <h2>Clear debts without cash.</h2>
+      <p>Debts often run in circles. Bob owes Tom $100, Tom owes Larry $100, and Larry owes Bob $100. None of them has any cash, yet each is owed exactly what he owes. Put the three in a room and every debt can be cancelled, sealed with three handshakes and no money changing hands. If one of the three is a bank, the arithmetic is the same, but the bank has to agree to it.</p>
+      <p>Suppose they argue about who pays first. A neutral catalyst can break the tie. Sheila lends a $100 bill: Bob pays Tom, Tom pays Larry, Larry pays Bob, and Bob hands the bill back to Sheila. Every debt is settled and Sheila ends up exactly where she started. The catalyst only has to be accepted at each step, which is acceptance primacy again. It doesn&rsquo;t have to be a cash note. A personal check or an IOU from Sheila works the same way, as long as each person accepts it.</p>
+      <p>Now put a bank in the middle. Each of the three owes it $100, and each is owed $100 by a neighbor, yet none of the three has any cash. The bank registers what each of them owes it, but not who owes them, so the money they are owed never reaches it and the debts simply wait. A clearing house sees both sides of every ledger, so it spots the loop and cancels it. Try both in the panel.</p>
+    </div>
+    <div class="panel" id="dbt">
+      <h3>Three debts, one loop</h3>
+      <div class="tabs" role="group" aria-label="Who sits in the middle">
+        <button class="btn" type="button" data-m="bank" aria-pressed="true">Through a bank</button>
+        <button class="btn" type="button" data-m="house" aria-pressed="false">Through a clearing house</button>
+        <button class="btn" type="button" data-m="sheila" aria-pressed="false">With Sheila&rsquo;s bill</button>
+      </div>
+      <div class="tabs" role="group" aria-label="Debt amounts" style="margin-top:0">
+        <button class="btn" type="button" data-a="even" aria-pressed="true">Even loop ($100 each)</button>
+        <button class="btn" type="button" data-a="uneven" aria-pressed="false">Uneven loop ($100, $60, $100)</button>
+      </div>
+      <div class="tablewrap"><table>
+        <thead><tr><th scope="col">Person</th><th scope="col" id="d-owes">Owes the bank</th><th scope="col">Is owed</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Bob</th><td id="d-b1"></td><td id="d-b2"></td></tr>
+          <tr><th scope="row">Tom</th><td id="d-t1"></td><td id="d-t2"></td></tr>
+          <tr><th scope="row">Larry</th><td id="d-l1"></td><td id="d-l2"></td></tr>
+        </tbody>
+      </table></div>
+      <div class="row" style="margin-top:1rem">
+        <button class="btn pri" type="button" id="d-go">Wait a month</button>
+        <button class="btn" type="button" id="d-reset">Start over</button>
+      </div>
+      <p class="out" id="d-out" aria-live="polite" style="margin:.9rem 0 0"></p>
+      <p id="d-note" style="margin:.4rem 0 0;color:var(--mute);font-size:1rem"></p>
+    </div>
+  </div>
+  <h3 style="margin-top:2.5rem">From three people to three hundred</h3>
+  <p>Now imagine three hundred or more people carrying similar debts and clearing them through a shared community clearing house instead of a distant central bank. Members record what they owe and what they are owed. The clearing house looks for loops like Bob&rsquo;s and cancels them. A small reserve, held by the community, plays Sheila&rsquo;s part and covers gaps in timing. Doing this by hand is hard, and it needs honest record-keeping and people willing to take part. AI could make it simple: it can keep the ledger, find every loop among hundreds of members, work out the fewest cancellations that clear the most debt, and explain each step in plain language for members to approve. Services can balance the books too: a debt can be settled by work done instead of money paid.</p>
 </div></section>
 
 <section id="why"><div class="wrap">
@@ -250,11 +299,11 @@ footer{padding:3rem 0 4rem;border-top:1px solid var(--line);color:var(--mute);fo
 <section id="portal"><div class="wrap">
   <h2>Who keeps the books?</h2>
   <p>Stickers only mean something if people trust the count. The Citizens Internet Portal (CIP), a companion framework for distributed, tamper-resistant democratic infrastructure, is a natural steward. Choose who runs it.</p>
-  <div class="tabs" role="tablist" aria-label="Portal operator">
-    <button class="btn" role="tab" id="t-gov" aria-selected="true" aria-controls="p-gov" data-p="gov">Government-operated</button>
-    <button class="btn" role="tab" id="t-com" aria-selected="false" aria-controls="p-gov" data-p="com">Community-led, open source</button>
+  <div class="tabs" role="group" aria-label="Portal operator">
+    <button class="btn" id="t-gov" aria-pressed="true" data-p="gov">Government-operated</button>
+    <button class="btn" id="t-com" aria-pressed="false" data-p="com">Community-led, open source</button>
   </div>
-  <div class="panel" id="p-gov" role="tabpanel" aria-labelledby="t-gov">
+  <div class="panel" id="p-gov" aria-live="polite">
     <p id="ptxt" style="margin:0"></p>
   </div>
   <h3 style="margin-top:2.5rem">What the Portal contributes either way</h3>
@@ -270,7 +319,7 @@ footer{padding:3rem 0 4rem;border-top:1px solid var(--line);color:var(--mute);fo
 <section id="research"><div class="wrap">
   <h2>Read the research.</h2>
   <p>X-Cents was developed by Duke Johnson, building on Ting Tsu Yu's original CurrentSea X-Change text, and analyzed in a paper co-authored with Claude (Anthropic). It is a stepping stone toward fuller systems such as Creative Currency Octaves, Universal Basic Income and Public Trust Foundations.</p>
-  <blockquote class="paper">The X-Cents framework can be understood as a comprehensive &ldquo;currency assurance&rdquo; system that secures community purchasing power and economic stability through democratic mechanisms. Unlike traditional insurance that protects against loss, currency assurance proactively ensures that money serves community welfare through value reassignment, circulation tracking, and equitable distribution systems. X-Cents could provide communities with immediate tools for economic self-determination when conventional institutions perpetuate unfair austerity for some and opulence for others.<cite>From the CurrentSea X-Change paper</cite></blockquote>
+  <blockquote class="paper">The X-Cents framework can be understood as a comprehensive &ldquo;currency assurance&rdquo; system that secures community purchasing power and economic stability through democratic mechanisms. Unlike traditional insurance that protects against loss, currency assurance proactively ensures that money serves community welfare through value reassignment, circulation tracking, and equitable distribution systems. X-Cents could provide communities with immediate tools for economic self-determination when conventional institutions perpetuate unfair austerity for some and opulence for others.<cite>From the <a href="https://bettertobest.wixsite.com/book/read-free">CurrentSea X-Change</a> paper</cite></blockquote>
   <div class="row">
     <a class="btn pri" style="text-decoration:none" href="https://www.academia.edu/144441020/CurrentSea_X_Change_A_Framework_for_Citizen_Led_Monetary_Reset_Using_Existing_Currency_Infrastructure">X-Cents paper</a>
     <a class="btn" style="text-decoration:none" href="https://bettertobest.github.io/research-hub/">Better To Best Research Hub</a>
@@ -320,32 +369,71 @@ $('trade').onclick=function(){if(n<100){n++;bill()}};
 $('reset').onclick=function(){n=0;bill()};
 /* coins */
 var on=false;
-$('hours').onclick=function(){on=!on;this.setAttribute('aria-pressed',on);this.textContent=on?'Switch off community hours':'Switch on community hours';$('hourstxt').textContent=on?'Every coin counts as $1 for essentials.':'Official face values.';[].forEach.call($('coins').children,function(c){c.classList.toggle('on',on);c.textContent=on?'$1':c.dataset.v})};
+$('hours').onclick=function(){on=!on;this.setAttribute('aria-pressed',on);$('hourstxt').textContent=on?'Every coin counts as $1 for essentials.':'Official face values.';[].forEach.call($('coins').children,function(c){c.classList.toggle('on',on);c.textContent=on?'$1':c.dataset.v})};
 /* wheel */
 var G={kids:{n:8,short:'$20',rule:'Trade one penny for a new dollar every day. On Saturday, a birth-year match (1 in 8) wins $20 for the matching-year coin.',prize:'$20 for the matching-year penny'},
 teens:{n:7,short:'$50',rule:'Trade nickels for new $5 bills daily. On the weekly spin, a birth-year match (1 in 7) wins $50 for the matching-year nickel.',prize:'$50 for the matching-year nickel'},
 adults:{n:0,rule:'Trade dimes for new $10 bills daily. Amounts vary with community requirements, civic responsibility or accumulated community work hours, so there is no fixed wheel. Your community sets the terms.'}};
 var g='kids',rot=0,spins=0,hits=0;
-function draw(){var c=G[g];$('rule').textContent=c.rule;var o=$('out');o.textContent='';o.classList.remove('win');spins=0;hits=0;$('tally').textContent='';var box=$('wbox'),w=$('wheelEl'),sp=$('spin');sp.disabled=false;
+function draw(){var c=G[g];$('rule').textContent=c.rule;var o=$('out');o.textContent='';o.classList.remove('win');spins=0;hits=0;$('tally').textContent='';var box=$('wbox'),w=$('wheelEl'),sp=$('spin');sp.removeAttribute('aria-disabled');
 if(!c.n){box.style.display='none';sp.style.display='none';$('odds').textContent='';return}
 box.style.display='';sp.style.display='';$('odds').textContent='The wheel has '+c.n+' slots and only slot '+c.n+' wins, so each spin is a 1 in '+c.n+' chance. Most spins will not match, which is how a lottery works.';
 var seg=360/c.n,st=[];for(var i=0;i<c.n;i++)st.push(i===c.n-1?'var(--gold)':(i%2?'var(--green)':'var(--blue)'));
 w.innerHTML='';for(var j=0;j<c.n;j++){var lb=document.createElement('div');lb.className='lb';lb.setAttribute('aria-hidden','true');lb.style.transform='rotate('+((j+.5)*seg)+'deg)';var lab=document.createElement('span');lab.textContent=j+1;if(j===c.n-1){lab.className='w0';var sm=document.createElement('small');sm.textContent=c.short;lab.appendChild(sm)}lb.appendChild(lab);w.appendChild(lb)}
 w.style.background='conic-gradient('+st.map(function(col,i){return col+' '+(i*seg)+'deg '+((i+1)*seg)+'deg'}).join(',')+')';w.style.transition='none';rot=0;w.style.transform='rotate(0deg)';void w.offsetWidth;w.style.transition=''}
 [].forEach.call(document.querySelectorAll('[data-g]'),function(b){b.onclick=function(){g=b.dataset.g;[].forEach.call(document.querySelectorAll('[data-g]'),function(x){x.setAttribute('aria-pressed',x===b)});draw()}});
-$('spin').onclick=function(){var c=G[g],gg=g,seg=360/c.n,win=Math.random()<1/c.n,k=win?c.n-1:Math.floor(Math.random()*(c.n-1));
+$('spin').onclick=function(){if(this.getAttribute('aria-disabled')==='true')return;var c=G[g],gg=g,seg=360/c.n,win=Math.random()<1/c.n,k=win?c.n-1:Math.floor(Math.random()*(c.n-1));
 rot=(Math.floor(rot/360)+5)*360+(360-(k+.5)*seg);$('wheelEl').style.transform='rotate('+rot+'deg)';
-var btn=this,o=$('out');btn.disabled=true;o.classList.remove('win');o.textContent='Spinning';
+var btn=this,o=$('out');btn.setAttribute('aria-disabled','true');o.classList.remove('win');o.textContent='Spinning';
 var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 setTimeout(function(){if(gg!==g)return;spins++;if(win)hits++;
 o.textContent='Landed on slot '+(k+1)+' of '+c.n+'. '+(win?'Birth-year match! Collect '+c.prize+'.':'No match this week, since only slot '+c.n+' wins. Tomorrow\u2019s daily trade is still yours.');
 if(win)o.classList.add('win');
-$('tally').textContent=spins+(spins===1?' spin, ':' spins, ')+hits+(hits===1?' match':' matches')+' so far.';btn.disabled=false},reduce?0:3200)};
+$('tally').textContent=spins+(spins===1?' spin, ':' spins, ')+hits+(hits===1?' match':' matches')+' so far.';btn.removeAttribute('aria-disabled')},reduce?0:3200)};
 draw();
+/* debt demo */
+var DM='bank',DA='even',DS=0,DMo=0,Dd=[100,100,100],DDone=false;
+var DBASE={even:[100,100,100],uneven:[100,60,100]};
+function $$(i,t){$(i).textContent=t}
+function usd(v){return '$'+v}
+var HOLD=['Sheila','Bob','Tom','Larry','Bob','Sheila'];
+var SMSG=['Sheila holds a $100 bill and offers to lend it. Press the button to start.','Sheila lends the bill to Bob.','Bob pays Tom $100 with it. Bob\u2019s debt is settled.','Tom pays Larry $100 with the same bill. Tom\u2019s debt is settled.','Larry pays Bob $100 with it. Larry\u2019s debt is settled.','Bob hands the bill back to Sheila. Every debt is settled and Sheila has her $100 again.'];
+function drender(msg){
+  /* Dd = [Bob owes Tom, Tom owes Larry, Larry owes Bob] */
+  $$('d-owes',DM==='bank'?'Owes the bank':'Owes');
+  $$('d-b1',usd(Dd[0]));$$('d-t1',usd(Dd[1]));$$('d-l1',usd(Dd[2]));
+  $$('d-b2',usd(Dd[2]));$$('d-t2',usd(Dd[0]));$$('d-l2',usd(Dd[1]));
+  var sum=Dd[0]+Dd[1]+Dd[2];
+  var go=$('d-go');
+  if(DM==='bank'){go.textContent='Wait a month';$$('d-note','The bank registers each debtor\u2019s debt, but not who owes the debtors.')}
+  else if(DM==='house'){go.textContent=DDone?'Loop cleared':'Clear the loop';$$('d-note','The clearing house sees both sides of every ledger, so it can see the loop. It cancels the smallest debt around it.')}
+  else{go.textContent=DS>=5?'Done':(DS===0?'Start the walk-through':'Next step');$$('d-note','Sheila is a neutral catalyst. A check or IOU she writes works the same way as the bill, if each person accepts it.')}
+  if(DM==='house'&&DDone||(DM==='sheila'&&DS>=5))go.setAttribute('aria-disabled','true');else go.removeAttribute('aria-disabled');
+  var o=$('d-out');o.classList.remove('win');
+  if(msg!==undefined){o.textContent=msg;return}
+  if(DM==='bank'){o.textContent=DMo===0?'Each is owed, but only the bank holds cash. Press the button to let time pass.':'Month '+DMo+': nothing has moved. Still owed to the bank: '+usd(sum)+'. Cash that has moved: $0.'}
+  else if(DM==='house'){o.textContent='Debts on the ledger: '+usd(sum)+'. Press the button to look for loops.'}
+  else{o.textContent=SMSG[DS]+(DS?' Bill held by '+HOLD[DS]+'.':'')}
+}
+function dreset(){DMo=0;DS=0;DDone=false;Dd=DBASE[DA].slice();drender()}
+[].forEach.call(document.querySelectorAll('[data-m]'),function(b){b.onclick=function(){DM=b.dataset.m;[].forEach.call(document.querySelectorAll('[data-m]'),function(x){x.setAttribute('aria-pressed',x===b)});
+  if(DM==='sheila'&&DA!=='even'){DA='even';[].forEach.call(document.querySelectorAll('[data-a]'),function(x){x.setAttribute('aria-pressed',x.dataset.a==='even')})}
+  var u=document.querySelector('[data-a="uneven"]');if(DM==='sheila')u.setAttribute('aria-disabled','true');else u.removeAttribute('aria-disabled');
+  dreset()}});
+[].forEach.call(document.querySelectorAll('[data-a]'),function(b){b.onclick=function(){if(b.getAttribute('aria-disabled')==='true')return;DA=b.dataset.a;[].forEach.call(document.querySelectorAll('[data-a]'),function(x){x.setAttribute('aria-pressed',x===b)});dreset()}});
+$('d-reset').onclick=dreset;
+$('d-go').onclick=function(){
+  if(this.getAttribute('aria-disabled')==='true')return;
+  if(DM==='bank'){DMo++;drender()}
+  else if(DM==='house'){var m=Math.min(Dd[0],Dd[1],Dd[2]);Dd=Dd.map(function(v){return v-m});DDone=true;var left=Dd[0]+Dd[1]+Dd[2];
+    drender('Loop found. The clearing house cancelled '+usd(m)+' around it, '+usd(m*3)+' of debt in all, with no cash moving.'+(left?' Still open: Bob owes Tom '+usd(Dd[0])+' and Larry owes Bob '+usd(Dd[2])+'.':' Every debt is settled.'));$('d-out').classList.add('win')}
+  else{DS++;if(DS===2)Dd[0]=0;if(DS===3)Dd[1]=0;if(DS===4)Dd[2]=0;drender();if(DS===5)$('d-out').classList.add('win')}
+};
+dreset();
 /* portal tabs */
 var P={gov:'A municipality, open collective or even a private group runs its own Portal instance. Assemblies set value rules, the government or operators register seal agents, and every stamp lands on a public ledger that residents or members can audit. It can add legitimacy and reach, and the Portal\u2019s distributed design still keeps any one official from altering the record.',
 com:'A volunteer collective runs the Portal as open-source software. The code is public and forkable, seal agents are admitted by community vote, and any neighborhood can spin up its own node and interconnect with others. It works with or without official sponsorship.'};
-function tab(k){$('ptxt').textContent=P[k];[].forEach.call(document.querySelectorAll('[data-p]'),function(b){b.setAttribute('aria-selected',b.dataset.p===k)});$('p-gov').setAttribute('aria-labelledby','t-'+k)}
+function tab(k){$('ptxt').textContent=P[k];[].forEach.call(document.querySelectorAll('[data-p]'),function(b){b.setAttribute('aria-pressed',b.dataset.p===k)})}
 [].forEach.call(document.querySelectorAll('[data-p]'),function(b){b.onclick=function(){tab(b.dataset.p)}});tab('gov');
 })();
 </script>
